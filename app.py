@@ -1,5 +1,6 @@
 from flask import Flask, render_template, url_for, flash, request, redirect
 from pymongo import MongoClient
+from bson.objectid import ObjectId
 
 cluster = MongoClient("mongodb+srv://abhi:intensive472@intensive-lsw6x.gcp.mongodb.net/test?retryWrites=true&w=majority")
 db = cluster["Database"]
@@ -30,3 +31,13 @@ def form():
 @app.route('/home', methods=["GET"])
 def homeie():
 	return render_template('home.html', projects=projects.find())
+
+
+@app.route('/delete/<projectid>')
+def delete(projectid):
+	projects.delete_one({'_id': ObjectId(projectid)})
+	return redirect('/')
+
+@app.route('/edit/<projectid>')
+def edit(projectid):
+

@@ -5,6 +5,8 @@
 {% for project in projects %}
     <div class="col-sm-4" align="center" style="margin-top:20px;">
         <div class="card h-100 mb-3" style="max-width: 20rem;">
+          <a style="margin-left:20px;float:left;" class="text-danger" href="/delete/{{ project._id }}"><span class="fa fa-trash"> delete</span></a>
+          <a style="margin-left:260px;float:right;" class="text-info" href="/"><span class="fa fa-pencil"></span> edit</a>
           <h3 class="card-header">{{ project.name }}</h3>
           <div class="card-body">
             <h5 class="card-title">Special title treatment</h5>

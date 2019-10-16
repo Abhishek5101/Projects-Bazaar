@@ -38,6 +38,21 @@ def delete(projectid):
 	projects.delete_one({'_id': ObjectId(projectid)})
 	return redirect('/')
 
+
 @app.route('/edit/<projectid>')
 def edit(projectid):
+	project = projects.find_one({'_id': ObjectId(projectid)})
+	return render_template('/edit_form.html', project=project)
 
+
+@app.route('/edit/<projectid>', methods=["POST"])
+def edit_project(projectid):
+	req = request.form
+	updated_project = {
+			"name": req["name"],
+			"description": req["description"],
+			"img_url": req["url"],
+			"githuburl": req["githuburl"]
+		}
+	projects.update_one({'_id': ObjectId(projectid)}, {'$set': updated_project})
+	return redirect('/')

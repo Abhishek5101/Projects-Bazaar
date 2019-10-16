@@ -1,18 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="container-fluid">
+    <div class="row">
 {% for project in projects %}
-<div class="col-sm-12" align="center" style="margin-top:20px;">
-    <div class="card mb-3" style="max-width: 20rem;">
-      <h3 class="card-header">{{ project.name }}</h3>
-      <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-      </div>
-      <img style="height: 200px; width: 100%; display: block;" src="{{ project.img_url }}" alt="Card image">
-      <div class="card-body">
-        <p class="card-text">{{ project.description }}</p>
-      </div>
+    <div class="col-sm-4" align="center" style="margin-top:20px;">
+        <div class="card h-100 mb-3" style="max-width: 20rem;">
+          <h3 class="card-header">{{ project.name }}</h3>
+          <div class="card-body">
+            <h5 class="card-title">Special title treatment</h5>
+            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+          </div>
+          <img style="height: 200px; width: 100%; display: block;" src="{{ project.img_url }}" alt="Card image">
+          <div class="card-body">
+            <p class="card-text">{{ project.description }}</p>
+          </div>
+        </div>
+    </div>
+
+        {% if loop.index % 3 == 0 %}
+        <div class="w-100"></div>
+        {% endif %}
+{% endfor %}
     </div>
 </div>
-{% endfor %}
 {% endblock %}

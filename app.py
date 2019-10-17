@@ -5,6 +5,8 @@ from bson.objectid import ObjectId
 cluster = MongoClient("mongodb+srv://abhi:intensive472@intensive-lsw6x.gcp.mongodb.net/test?retryWrites=true&w=majority")
 db = cluster["Database"]
 projects = db["projects"]
+users = db["users"]
+
 
 app = Flask(__name__)
 @app.route('/')

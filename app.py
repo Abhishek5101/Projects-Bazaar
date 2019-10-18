@@ -9,10 +9,11 @@ app = Flask(__name__)
 
 app.config["SECRET_KEY"] = "iHpc3WXh7qzdN_JaGAQmqA"
 # cluster = MongoClient("mongodb+srv://abhi:intensive472@intensive-lsw6x.gcp.mongodb.net/test?retryWrites=true&w=majority")
+host = "mongodb+srv://abhi:intensive472@intensive-lsw6x.gcp.mongodb.net/test?retryWrites=true&w=majority"
 # db = cluster["Database"]
 # projects = db["projects"]
 # users = db["users"]
-host = os.environ.get("MONGODB_URI", "mongodb+srv://abhi:intensive472@intensive-lsw6x.gcp.mongodb.net/test?retryWrites=true&w=majority")
+#host = os.environ.get("MONGODB_URI", "mongodb+srv://abhi:intensive472@intensive-lsw6x.gcp.mongodb.net/test?retryWrites=true&w=majority")
 client = MongoClient(host=f"{host}?retryWrites=false")
 db = client.get_default_database()
 projects = db.projects

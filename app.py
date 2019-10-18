@@ -14,7 +14,8 @@ host = "mongodb+srv://abhi:intensive472@intensive-lsw6x.gcp.mongodb.net/test?ret
 # projects = db["projects"]
 # users = db["users"]
 #host = os.environ.get("MONGODB_URI", "mongodb+srv://abhi:intensive472@intensive-lsw6x.gcp.mongodb.net/test?retryWrites=true&w=majority")
-client = MongoClient(host=f"{host}?retryWrites=false")
+#client = MongoClient(host=f"{host}?retryWrites=false")
+client = MongoClient(host=host)
 db = client.get_default_database()
 projects = db.projects
 users = db.users

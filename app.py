@@ -126,7 +126,3 @@ def sign_out():
 	print(session)
 	return redirect('/')
 
-
-@app.route('/landing')
-def landing_page():
-	return render_template('Shards-3.0.0/dummy.html')

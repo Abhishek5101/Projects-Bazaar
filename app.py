@@ -2,7 +2,6 @@ from flask import Flask, render_template, url_for, flash, request, redirect, ses
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 import bcrypt
-import jwt
 
 
 app = Flask(__name__)
@@ -58,7 +57,13 @@ def delete(projectid):
 @app.route('/edit/<projectid>')
 def edit(projectid):
 	project = projects.find_one({'_id': ObjectId(projectid)})
-	return render_template('/edit_form.html', project=project)
+	if session:
+		if project['creator'] == session['user']['username']:
+			return render_template('/edit_form.html', project=project)
+		else:
+			return '<h1>Not Owner</h1>'
+	else:
+		redirect('/')
 
 
 @app.route('/edit/<projectid>', methods=["POST"])
@@ -93,7 +98,7 @@ def sign_in():
 	
 
 @app.route('/register')
-def pizzas_register():
+def register():
 	if 'user' in session:
 		return render_template('register.html', user=True)
 	else:
@@ -120,3 +125,8 @@ def sign_out():
 	session.clear()
 	print(session)
 	return redirect('/')
+
+
+@app.route('/landing')
+def landing_page():
+	return render_template('Shards-3.0.0/dummy.html')

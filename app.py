@@ -26,13 +26,18 @@ projects = db.projects
 users = db.users
 
 """
-Inde
+Index route that will return on the projects
+including a button to create a new project
 """
 @app.route('/')
 def home():
 	return render_template('home.html', projects=projects.find())
 
-
+"""
+A link to the main form that will get all the project
+related data from user which we will use later on so
+we save it in the database
+"""
 @app.route('/form', methods=["GET", "POST"])
 def form():
 	user = session['user']['username']
@@ -55,7 +60,11 @@ def form():
 def homeie():
 	return render_template('home.html', projects=projects.find())
 
-
+"""
+The delete specific project route that will
+delete the project whose delete icon has been clicked.
+Will only delete if you are the owner of the project
+"""
 @app.route('/delete/<projectid>')
 def delete(projectid):
 	project = projects.find_one({'_id': ObjectId(projectid)})
@@ -67,7 +76,11 @@ def delete(projectid):
 			return '<h1> Not Owner</h1>'
 	return redirect('/')
 
-
+"""
+The Edit specific project route that will
+edit the project whose delete icon has been clicked.
+Will only edit if you are the owner of the project
+"""
 @app.route('/edit/<projectid>')
 def edit(projectid):
 	project = projects.find_one({'_id': ObjectId(projectid)})
@@ -92,7 +105,9 @@ def edit_project(projectid):
 	projects.update_one({'_id': ObjectId(projectid)}, {'$set': updated_project})
 	return redirect('/')
 
-
+"""
+The Sign in Page
+"""
 @app.route('/sign_in', methods=["GET", "POST"])
 def sign_in():
 	req = request.form
@@ -110,7 +125,9 @@ def sign_in():
 	elif request.method == "GET":
 		return render_template('sign_in.html')
 	
-
+"""
+The User registration page
+"""
 @app.route('/register')
 def register():
 	if 'user' in session:
@@ -133,14 +150,18 @@ def user_register():
 	session['user'] = {'username': user['username']}
 	return redirect('/sign_in')
 
-
+"""
+Hitting this route will clear session, effectively logging you out
+"""
 @app.route('/sign_out')
 def sign_out():
 	session.clear()
 	print(session)
 	return redirect('/')
 
-
+"""
+The landing page
+"""
 @app.route('/landing')
 def landing():
 	return render_template('landing.html')

@@ -1,3 +1,6 @@
+"""'
+This is the main python file for all the possible routes on the website
+"""
 from flask import Flask, render_template, url_for, flash, request, redirect, session
 from pymongo import MongoClient
 from bson.objectid import ObjectId
@@ -13,13 +16,18 @@ app.config["SECRET_KEY"] = "iHpc3WXh7qzdN_JaGAQmqA"
 # db = cluster["Database"]
 # projects = db["projects"]
 # users = db["users"]
-host = os.environ.get("MONGODB_URI", "mongodb+srv://abhi:intensive472@intensive-lsw6x.gcp.mongodb.net/test?retryWrites=true&w=majority")
-client = MongoClient(host=f"{host}?retryWrites=false")
-# client = MongoClient(host=host)
+#uncomment next two
+host = os.environ.get("MONGODB_URI", "mongodb+srv://abhi:intensive472@intensive-lsw6x.gcp.mongodb.net/test?retryWrites=false&w=majority")
+#client = MongoClient(host=f"{host}?retryWrites=false")
+client = MongoClient(host=host)
+#uncomment
 db = client.get_default_database()
 projects = db.projects
 users = db.users
 
+"""
+Inde
+"""
 @app.route('/')
 def home():
 	return render_template('home.html', projects=projects.find())
@@ -132,3 +140,11 @@ def sign_out():
 	print(session)
 	return redirect('/')
 
+
+@app.route('/landing')
+def landing():
+	return render_template('landing.html')
+
+
+if __name__ == '__main__':
+	app.run(debug=True, port=5000)

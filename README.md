@@ -9,5 +9,3 @@ This project uses `pipenv` package manager
 
 You can find all the dependencies inside  `Pipfile `
 
-
-[![PBdemo.gif](https://s3.gifyu.com/images/PBdemo.gif)](https://gifyu.com/image/kClq)

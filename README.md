@@ -9,8 +9,5 @@ This project uses `pipenv` package manager
 
 You can find all the dependencies inside  `Pipfile `
 
-![](static/PB demo.mov)
 
-<video width="500" height="500" controls>
-  <source src="static/PB demo.mov" type="video/mov">
-</video>
+[![PBdemo.gif](https://s3.gifyu.com/images/PBdemo.gif)](https://gifyu.com/image/kClq)

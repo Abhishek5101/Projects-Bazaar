@@ -9,3 +9,4 @@ This project uses `pipenv` package manager
 
 You can find all the dependencies inside  `Pipfile `
 
+availabe at https://projectsbazaar.herokuapp.com/landing
